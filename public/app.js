@@ -1,16 +1,16 @@
 // Initial game state
-let cells = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
+let cells = ['', '',  ', ' ', ' ', ' ', ' ', ' ', ' '];
 let currentPlayer = 'X';
 // let result = document.querySelector('.result');
 const boxes = Array.from(document.querySelectorAll('.btn'));
-const playerDisplay = document.querySelector('.display-player');
+const playerDisplay = document.querySelector('.current_player');
 const resetButton = document.querySelector('#reset');
 const announcer = document.querySelector('.announcer');
 let isGameActive = true;
 
 const PLAYERX_WON = 'PLAYERX_WON';
 const PLAYERO_WON = 'PLAYERO_WON';
-const tie = 'tie';
+const TIE = 'TIE';
 
 const conditions = [
     [0, 1, 2],
@@ -25,25 +25,18 @@ const conditions = [
 
 function handleResultValidation() {
     let roundWon = false;
-    for (let i = 0; i <= 8; i++) {
-        if(cells[conditions[i]]==='X' || cells[conditions[i]]==='O')
-        {
+    for (let i = 0; i <= 7; i++) {
+        const winCondition = conditions[i];
+        const a = cells[conditions[0]];
+        const b = cells[conditions[1]];
+        const c = cells[conditions[2]];
+        if (a === '' || b === '' || c === ''){
+            continue;
+        }
+        if (a!=[' ',' ',' '] && b!=[' ',' ',' '] && c!=[' ',' ',' ']) {
             roundWon = true;
             break;
         }
-        else
-            i--;
-        //const winCondition = conditions[i];
-        // const a = cells[conditions[i+0]];
-        // const b = cells[conditions[i+1]];
-        // const c = cells[conditions[i+2]];
-        // if (a===[' ',' ',' '] || b===[' ',' ',' '] || c===[' ',' ',' ']){
-        //     continue;
-        // }
-        // if (a!=[' ',' ',' '] && b!=[' ',' ',' '] && c!=[' ',' ',' ']) {
-        //     roundWon = true;
-        //     break;
-        // }
     }
 
     if (roundWon) {
@@ -52,7 +45,7 @@ function handleResultValidation() {
         return;
     }
     if (!cells.includes(' '))
-        announce(tie);
+        announce(TIE);
 }
 
 const announce = (type) => {
@@ -63,8 +56,8 @@ const announce = (type) => {
         case PLAYERX_WON:
             announcer.innerHTML = 'Player X Won';
             break;
-        case tie:
-            announcer.innerText = 'Tie';
+        case TIE:
+            announcer.innerText = 'TIE';
     }
     announcer.classList.remove('hide');
 };
