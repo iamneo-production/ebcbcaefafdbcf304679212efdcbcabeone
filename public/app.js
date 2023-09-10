@@ -1,5 +1,5 @@
 // Initial game state
-let cells = ['', '',  ', ' ', ' ', ' ', ' ', ' ', ' '];
+let cells = ['', '', '', '', '', '', '', '', ''];
 let currentPlayer = 'X';
 // let result = document.querySelector('.result');
 const boxes = Array.from(document.querySelectorAll('.btn'));
@@ -33,7 +33,7 @@ function handleResultValidation() {
         if (a === '' || b === '' || c === ''){
             continue;
         }
-        if (a!=[' ',' ',' '] && b!=[' ',' ',' '] && c!=[' ',' ',' ']) {
+        if (a===b && b===c) {
             roundWon = true;
             break;
         }
@@ -62,8 +62,8 @@ const announce = (type) => {
     announcer.classList.remove('hide');
 };
 
-const isValidAction = (element) => {
-    if (element.innerText === 'X' || element.innerText === 'O') {
+const isValidAction = (btn) => {
+    if (btn.innerText === 'X' || btn.innerText === 'O') {
         return false;
     }
     return true;
@@ -81,10 +81,10 @@ const changePlayer = () => {
 }
 
 // Function to handle player moves
-const ticTacToe = (element, index) => {
-    if (isValidAction(element) && isGameActive) {
-        element.innerText = currentPlayer;
-        element.classList.add('player${currentPlayer}');
+const ticTacToe = (btn, index) => {
+    if (isValidAction(btn) && isGameActive) {
+        btn.innerText = currentPlayer;
+        btn.classList.add('player${currentPlayer}');
         updateBoard(index);
         handleResultValidation();
         changePlayer();
@@ -93,7 +93,7 @@ const ticTacToe = (element, index) => {
 
 // Function to reset the game
 const resetGame = () => {
-    cells = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
+    cells = ['', '', '', '', '', '', '', '', ''];
     isGameActive = true;
     announcer.classList.add('hide');
 
@@ -101,10 +101,10 @@ const resetGame = () => {
         changePlayer();
     }
 
-    boxes.forEach(element => {
-        element.innerText = '';
-        element.classList.remove('playerX');
-        element.classList.remove('playerO');
+    boxes.forEach(btn => {
+        btn.innerText = '';
+        btn.classList.remove('playerX');
+        btn.classList.remove('playerO');
     })
 }
 
