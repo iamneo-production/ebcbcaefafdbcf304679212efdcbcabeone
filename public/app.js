@@ -1,12 +1,13 @@
 // Initial game state
 let cells = ['', '', '', '', '', '', '', '', ''];
 let currentPlayer = 'X';
+let isGameActive = true;
+
 // let result = document.querySelector('.result');
 const boxes = Array.from(document.querySelectorAll('.btn'));
 const playerDisplay = document.querySelector('.current_player');
 const resetButton = document.querySelector('#reset');
 const announcer = document.querySelector('.announcer');
-let isGameActive = true;
 
 const PLAYERX_WON = 'PLAYERX_WON';
 const PLAYERO_WON = 'PLAYERO_WON';
@@ -27,9 +28,9 @@ function handleResultValidation() {
     let roundWon = false;
     for (let i = 0; i <= 7; i++) {
         const winCondition = conditions[i];
-        const a = cells[conditions[0]];
-        const b = cells[conditions[1]];
-        const c = cells[conditions[2]];
+        const a = cells[winCondition[0]];
+        const b = cells[winCondition[1]];
+        const c = cells[winCondition[2]];
         if (a === '' || b === '' || c === ''){
             continue;
         }
@@ -44,7 +45,7 @@ function handleResultValidation() {
         isGameActive = false;
         return;
     }
-    if (!cells.includes(' '))
+    if (!cells.includes(''))
         announce(TIE);
 }
 
@@ -74,17 +75,17 @@ const updateBoard = (index) => {
 }
 
 const changePlayer = () => {
-    playerDisplay.classList.remove('player${currentPlayer}');
+    playerDisplay.classList.remove(`player${currentPlayer}`);
     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
     playerDisplay.innerText = currentPlayer;
-    playerDisplay.classList.add('player${currentPlayer}');
+    playerDisplay.classList.add(`player${currentPlayer}`);
 }
 
 // Function to handle player moves
 const ticTacToe = (btn, index) => {
     if (isValidAction(btn) && isGameActive) {
         btn.innerText = currentPlayer;
-        btn.classList.add('player${currentPlayer}');
+        btn.classList.add(`player${currentPlayer}`);
         updateBoard(index);
         handleResultValidation();
         changePlayer();
