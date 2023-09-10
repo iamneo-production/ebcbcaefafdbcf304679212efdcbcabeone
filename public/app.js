@@ -2,7 +2,7 @@
 let cells = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
 let currentPlayer = 'X';
 // let result = document.querySelector('.result');
-const btns = Array.from(document.querySelectorAll('.btn'));
+const boxes = Array.from(document.querySelectorAll('.btn'));
 const playerDisplay = document.querySelector('.display-player');
 const resetButton = document.querySelector('#reset');
 const announcer = document.querySelector('.announcer');
@@ -108,14 +108,14 @@ const resetGame = () => {
         changePlayer();
     }
 
-    btns.forEach(element => {
+    boxes.forEach(element => {
         element.innerText = '';
         element.classList.remove('playerX');
         element.classList.remove('playerO');
     })
 }
 
-btns.forEach((btn, index) => {
+boxes.forEach((btn, index) => {
     btn.addEventListener('click', () => ticTacToe(btn, index));
 });
 
