@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tic_tac_toe</title>
+
+  <!-- link the style.css and app.js files -->
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+
+<body>
+  <!-- Enter your code here -->
+  <section id="header">
+    <h1>Tic Tac Toe</h1>
+  </section>
+
+  <div class="container">
+    <div class="grid">
+      <div id="cell0" class="btn"></div>
+      <div id="cell1" class="btn"></div>
+      <div id="cell2" class="btn"></div>
+      <div id="cell3" class="btn"></div>
+      <div id="cell4" class="btn"></div>
+      <div id="cell5" class="btn"></div>
+      <div id="cell6" class="btn"></div>
+      <div id="cell7" class="btn"></div>
+      <div id="cell8" class="btn"></div>
+    </div>
+  </div>
+  <div class="result-container">
+    <p class="result">Player <span class="display-player playerX">X</span> turn</p>
+    <p class="display announcer hide"></p>
+    <br>
+    <button id="reset" onclick="reset_board()">RESET</button>
+  </div>
+  <script src="app.js"></script>
+</body>
+
+</html>
